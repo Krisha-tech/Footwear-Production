@@ -1,0 +1,45 @@
+﻿@model ClientSever.Models.mvcFootwearModel
+@{
+    ViewBag.Title = "AddorEdit";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.FootwearID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FootwearCetogory)
+            @Html.EditorFor(model => model.FootwearCetogory)
+            @Html.ValidationMessageFor(model => model.FootwearCetogory)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FootwearType)
+            @Html.EditorFor(model => model.FootwearType)
+            @Html.ValidationMessageFor(model => model.FootwearType)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FootwearBrand)
+            @Html.EditorFor(model => model.FootwearBrand)
+            @Html.ValidationMessageFor(model => model.FootwearBrand)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price)
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn button" />
+            <input type="reset" value="Reset" class="btn button" />
+        </div>
+    }
+
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}

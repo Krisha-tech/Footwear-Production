@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Clientmvc.Models.mvcFootwearModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("AddorEdit","Footwear")" class="btn btn-default"><i class="fa fa-plus"></i> Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FootwearID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FootwearCetogory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FootwearType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FootwearBrand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FootwearID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FootwearCetogory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FootwearType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FootwearBrand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a href="@Url.Action("AddorEdit", "Footwear", new { id = item.FootwearID})" class="btn btn-default"><i class="fa fa-pencil"></i>  Edit</a>
+                <a onclick="Delete(@item.FootwearID)" class="btn btn-default"><i class="fa fa-trash"></i>  Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+      $(function () {
+          var successMessage = '@TempData["SuccessMessage"]'
+          if (successMessage != '')
+              alertify.success(successMessage);
+      });
+
+      function Delete(id) {
+        alertify.confirm('Delete Record','Are you sure, you want to delete this record ?',function(){
+            window.location.href  = '@Url.Action("Delete","Footwear")/'+id;
+        },null );
+      }
+    </script>
+}
